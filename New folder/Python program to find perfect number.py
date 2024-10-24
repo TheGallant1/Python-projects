@@ -1,9 +1,26 @@
-my_list=[]
-for x in range(1, 1000000):
-  sum_divisor = 0
-  for y in range(1,x):
-    if x % y == 0:
-      sum_divisor += y
-  if sum_divisor == x:
-      my_list.append(x)
-print(my_list)
+ef is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def find_perfect_numbers(limit):
+    perfect_numbers = []
+    p = 2
+    
+    while True:
+        mersenne = (2 ** p) - 1
+        if is_prime(mersenne):
+            perfect_number = (2 ** (p - 1)) * mersenne
+            if perfect_number > limit:
+                break
+            perfect_numbers.append(perfect_number)
+        p += 1
+    
+    return perfect_numbers
+  
+limit = 1000000
+perfect_numbers = find_perfect_numbers(limit)
+print(f"Perfect numbers up to {limit}: {perfect_numbers}")
